@@ -17,6 +17,9 @@ const trendingGames = [
   { id: 7, title: 'CONNECT FOUR', category: 'BOARD', img: gameConnectFour },
 ];
 
+// Duplicate cards for seamless infinite marquee loop
+const duplicatedGames = [...trendingGames, ...trendingGames];
+
 const TrendingGames = () => {
   return (
     <section className="discover-trending" aria-label="Trending Games">
@@ -28,10 +31,10 @@ const TrendingGames = () => {
         </span>
       </div>
 
-      <div className="discover-trending__track-wrap">
-        <div className="discover-trending__track no-scrollbar">
-          {trendingGames.map((game) => (
-            <article key={game.id} className="discover-trending__card brutal-card">
+      <div className="discover-trending__track-wrap no-scrollbar">
+        <div className="discover-trending__track">
+          {duplicatedGames.map((game, idx) => (
+            <article key={`${game.id}-${idx}`} className="discover-trending__card brutal-card">
               <img
                 src={game.img}
                 alt={game.title}

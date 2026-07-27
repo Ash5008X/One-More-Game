@@ -10,7 +10,7 @@
   height: 80px;
   padding: 0 40px;
   background-color: #000000;
-  border-bottom: 2px solid #3b4b35;
+  border-bottom: 5px solid #ffffff;
   position: sticky;
   top: 0;
   z-index: 50;
@@ -127,6 +127,7 @@
   background: #ffb4ab;
   border-radius: 50%;
   pointer-events: none;
+
 }
 
 .dash-nav__avatar {

@@ -523,12 +523,75 @@
   transform: translateX(-100%) scale(0.05);
 }
 
-.is-expanding .auth-panel {
-  filter: blur(0px);
-  opacity: 1;
+/* --- Unfolding (Portal Expansion from Center Pill) --- */
+
+@keyframes unfoldFormsLogin {
+  0% {
+    transform: translateX(0) scale(0.05);
+    opacity: 0.4;
+    filter: blur(4px);
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
 }
 
-/* Note: `is-expanding` state implicitly returns to `scaleX(1)` defined by `.auth-card--login`/`register` */
+@keyframes unfoldWelcomeLogin {
+  0% {
+    transform: translateX(0) scale(0.05);
+    opacity: 0.4;
+    filter: blur(4px);
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@keyframes unfoldFormsRegister {
+  0% {
+    transform: translateX(100%) scale(0.05);
+    opacity: 0.4;
+    filter: blur(4px);
+  }
+  100% {
+    transform: translateX(100%) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@keyframes unfoldWelcomeRegister {
+  0% {
+    transform: translateX(-100%) scale(0.05);
+    opacity: 0.4;
+    filter: blur(4px);
+  }
+  100% {
+    transform: translateX(-100%) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+.is-expanding.auth-page.is-login .auth-panel--forms {
+  animation: unfoldFormsLogin 450ms cubic-bezier(0.25, 1, 0.25, 1) forwards;
+}
+
+.is-expanding.auth-page.is-login .auth-panel--welcome {
+  animation: unfoldWelcomeLogin 450ms cubic-bezier(0.25, 1, 0.25, 1) forwards;
+}
+
+.is-expanding.auth-page.is-register .auth-panel--forms {
+  animation: unfoldFormsRegister 450ms cubic-bezier(0.25, 1, 0.25, 1) forwards;
+}
+
+.is-expanding.auth-page.is-register .auth-panel--welcome {
+  animation: unfoldWelcomeRegister 450ms cubic-bezier(0.25, 1, 0.25, 1) forwards;
+}
 
 
 /* ============================================================

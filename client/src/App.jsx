@@ -16,45 +16,45 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/auth" element={<Auth />} />
-          <Route 
-            path="/dashboard" 
+          <Route
+            path="/dashboard"
             element={
               <ProtectedRoute>
                 <Dashboard />
               </ProtectedRoute>
-            } 
+            }
           />
-          <Route 
-            path="/discover" 
+          <Route
+            path="/discover"
             element={
               <ProtectedRoute>
                 <Discover />
               </ProtectedRoute>
-            } 
+            }
           />
-          <Route 
-            path="/library" 
+          <Route
+            path="/library"
             element={
               <ProtectedRoute>
                 <Library />
               </ProtectedRoute>
-            } 
+            }
           />
-          <Route 
-            path="/leaderboards" 
+          <Route
+            path="/leaderboards"
             element={
               <ProtectedRoute>
                 <Leaderboards />
               </ProtectedRoute>
-            } 
+            }
           />
-          <Route 
-            path="/achievements" 
+          <Route
+            path="/achievements"
             element={
               <ProtectedRoute>
                 <Achievements />
               </ProtectedRoute>
-            } 
+            }
           />
         </Routes>
       </BrowserRouter>

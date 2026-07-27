@@ -6,7 +6,7 @@
   width: 100%;
   height: 96px;
   padding: 0 64px;
-  background-color: #000000;
+  background-color: var(--background);
   border-bottom: 4px solid #ffffff;
   position: sticky;
   top: 0;
@@ -33,8 +33,8 @@
 }
 
 .navbar__badge {
-  background-color: #FF8400;
-  color: #000000;
+  background-color: var(--accent-orange);
+  color: var(--background);
   font-size: 10px;
   font-weight: 700;
   padding: 2px 8px;
@@ -42,7 +42,7 @@
   transform: rotate(3deg);
   text-transform: uppercase;
   white-space: nowrap;
-  border: 1px solid #000000;
+  border: 1px solid var(--background);
   display: inline-block;
 }
 
@@ -72,7 +72,7 @@
 }
 
 .navbar__link:hover {
-  color: #00FF0D;
+  color: var(--primary-container);
   transform: translateY(-2px);
   text-decoration: underline;
   text-decoration-thickness: 2px;
@@ -86,23 +86,23 @@
 }
 
 .navbar__cta {
-  background-color: #00FF0D;
-  color: #000000;
+  background-color: var(--primary-container);
+  color: var(--background);
   font-family: 'JetBrains Mono', monospace;
   font-size: 14px;
   font-weight: 700;
   line-height: 14px;
   letter-spacing: 0.05em;
   padding: 12px 24px;
-  border: 3px solid #000000;
-  box-shadow: 6px 6px 0px 0px #FFFFFF;
+  border: 3px solid var(--background);
+  box-shadow: 6px 6px 0px 0px #ffffff;
   cursor: pointer;
   transition: transform 0.15s, box-shadow 0.15s;
 }
 
 .navbar__cta:hover {
   transform: translate(-3px, -3px);
-  box-shadow: 3px 3px 0px 0px #FFFFFF;
+  box-shadow: 3px 3px 0px 0px #ffffff;
 }
 
 .navbar__cta:active {

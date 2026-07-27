@@ -8,8 +8,8 @@
 /* ------------------------------------------------------------------ */
 .discover-page {
   min-height: 100vh;
-  background-color: #000000;
-  color: #e2e2e2;
+  background-color: var(--background);
+  color: var(--on-background);
   font-family: 'Space Grotesk', sans-serif;
   display: flex;
   flex-direction: column;
@@ -29,7 +29,7 @@
 }
 
 /* Reduce spacing between search bar and hero */
-.discover-search + .discover-hero {
+.discover-search+.discover-hero {
   margin-top: -8px;
 }
 
@@ -51,7 +51,7 @@
   font-weight: 900;
   letter-spacing: -0.01em;
   text-transform: uppercase;
-  color: #e2e2e2;
+  color: var(--on-background);
   margin: 0;
 }
 
@@ -59,8 +59,8 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background-color: #FF8400;
-  color: #000000;
+  background-color: var(--accent-orange);
+  color: var(--background);
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
   font-weight: 700;
@@ -73,7 +73,7 @@
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
   font-weight: 700;
-  color: #84967c;
+  color: var(--outline);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -86,9 +86,15 @@
   justify-content: flex-end;
 }
 
+.discover-search__form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .discover-search__input-wrap {
   position: relative;
-  width: 340px;
+  width: 320px;
 }
 
 .discover-search__icon {
@@ -96,7 +102,7 @@
   left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  color: #84967c;
+  color: var(--outline);
   font-size: 20px;
   pointer-events: none;
 }
@@ -104,9 +110,9 @@
 .discover-search__input {
   width: 100%;
   padding: 12px 16px 12px 44px;
-  background: #000000;
+  background: var(--background);
   border: 2px solid #ffffff;
-  color: #e2e2e2;
+  color: var(--on-background);
   font-family: 'Space Grotesk', sans-serif;
   font-size: 14px;
   font-weight: 500;
@@ -116,7 +122,7 @@
 }
 
 .discover-search__input::placeholder {
-  color: #84967c;
+  color: var(--outline);
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
   font-weight: 500;
@@ -124,8 +130,43 @@
 }
 
 .discover-search__input:focus {
-  border-color: #00ff0d;
-  box-shadow: 4px 4px 0px 0px #00ff0d;
+  border-color: var(--primary-container);
+  box-shadow: 4px 4px 0px 0px var(--primary-container);
+}
+
+.discover-search__btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 20px;
+  background: var(--background);
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px 0px #ffffff;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.discover-search__btn .material-symbols-outlined {
+  font-size: 18px;
+}
+
+.discover-search__btn:hover {
+  background: var(--primary-container);
+  color: var(--background);
+  border-color: var(--background);
+  box-shadow: 4px 4px 0px 0px #ffffff;
+}
+
+.discover-search__btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #ffffff;
 }
 
 /* ------------------------------------------------------------------ */
@@ -142,7 +183,7 @@
 }
 
 .discover-hero.brutal-card:hover {
-  border-color: #00ff0d;
+  border-color: var(--primary-container);
 }
 
 /* Ken Burns zoom animation */
@@ -150,6 +191,7 @@
   0% {
     transform: scale(1);
   }
+
   100% {
     transform: scale(1.08);
   }
@@ -179,13 +221,23 @@
 }
 
 @keyframes heroFadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes heroFadeOut {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 /* Gradient overlay */
@@ -215,6 +267,7 @@
     opacity: 0;
     transform: translateY(12px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -268,8 +321,8 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background-color: #FF8400;
-  color: #000000;
+  background-color: var(--accent-orange);
+  color: var(--background);
   border: 2px solid #ffffff;
   padding: 10px 20px;
   font-family: 'Space Grotesk', sans-serif;
@@ -318,9 +371,9 @@
 }
 
 .discover-hero__details-btn:hover {
-  border-color: #00ff0d;
-  color: #00ff0d;
-  box-shadow: 4px 4px 0px 0px #00ff0d;
+  border-color: var(--primary-container);
+  color: var(--primary-container);
+  box-shadow: 4px 4px 0px 0px var(--primary-container);
   transform: translate(-2px, -2px);
 }
 
@@ -374,6 +427,7 @@
   0% {
     transform: scaleX(0);
   }
+
   100% {
     transform: scaleX(1);
   }
@@ -388,26 +442,41 @@
   height: 100%;
   background: #ffffff;
   border-radius: 3px;
-  transform-origin: left center;
-  animation: heroProgressFill 10s linear forwards;
+  transform-origin: left;
+  animation: heroProgressFill 10s linear;
   will-change: transform;
 }
 
 /* ------------------------------------------------------------------ */
-/*  Trending Games                                                      */
+/*  Trending Games                                                    */
 /* ------------------------------------------------------------------ */
+@keyframes marqueeScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
 .discover-trending__track-wrap {
   position: relative;
   width: 100%;
-  overflow: hidden;
+  overflow-x: auto;
 }
 
 .discover-trending__track {
   display: flex;
   gap: 16px;
-  overflow-x: auto;
-  padding: 8px 4px 24px;
-  scroll-snap-type: x mandatory;
+  width: max-content;
+  padding: 12px 12px 24px 12px;
+  margin: -12px -12px 0 -12px;
+  animation: marqueeScroll 35s linear infinite;
+  will-change: transform;
+}
+
+.discover-trending__track-wrap:hover .discover-trending__track {
+  animation-play-state: paused;
 }
 
 .discover-trending__card {
@@ -441,7 +510,7 @@
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
-  color: #e2e2e2;
+  color: var(--on-background);
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -453,7 +522,7 @@
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  color: #7d0eff;
+  color: var(--secondary-container);
 }
 
 .discover-trending__play-btn {
@@ -475,9 +544,9 @@
 }
 
 .discover-trending__play-btn:hover {
-  background: #00ff0d;
-  color: #000000;
-  border-color: #00ff0d;
+  background: var(--primary-container);
+  color: var(--background);
+  border-color: var(--primary-container);
 }
 
 /* ------------------------------------------------------------------ */
@@ -494,7 +563,7 @@
   flex-shrink: 0;
   padding: 10px 20px;
   background: transparent;
-  color: #e2e2e2;
+  color: var(--on-background);
   border: 2px solid #ffffff;
   font-family: 'Space Grotesk', sans-serif;
   font-size: 13px;
@@ -508,9 +577,9 @@
 }
 
 .discover-browse__chip:hover {
-  border-color: #00ff0d;
-  color: #00ff0d;
-  box-shadow: 3px 3px 0px 0px #00ff0d;
+  border-color: var(--primary-container);
+  color: var(--primary-container);
+  box-shadow: 3px 3px 0px 0px var(--primary-container);
   transform: translate(-2px, -2px);
 }
 
@@ -520,16 +589,43 @@
 }
 
 .discover-browse__chip--active {
-  background: #00ff0d;
-  color: #000000;
-  border-color: #00ff0d;
-  box-shadow: 3px 3px 0px 0px #000000;
+  background: var(--primary-container);
+  color: var(--background);
+  border-color: var(--primary-container);
+  box-shadow: 3px 3px 0px 0px var(--background);
 }
 
 .discover-browse__chip--active:hover {
-  color: #000000;
-  box-shadow: 5px 5px 0px 0px #000000;
+  color: var(--background);
+  box-shadow: 5px 5px 0px 0px var(--background);
   transform: translate(-2px, -2px);
+}
+
+.discover-browse__add-btn {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px 0px #ffffff;
+  transition: all 0.15s ease;
+}
+
+.discover-browse__add-btn:hover {
+  border-color: var(--primary-container);
+  color: var(--primary-container);
+  box-shadow: 3px 3px 0px 0px var(--primary-container);
+  transform: translate(-2px, -2px);
+}
+
+.discover-browse__add-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
 }
 
 /* ------------------------------------------------------------------ */
@@ -545,7 +641,8 @@
   display: flex;
   gap: 16px;
   overflow-x: auto;
-  padding-bottom: 8px;
+  padding: 12px 12px 24px 12px;
+  margin: -12px -12px 0 -12px;
 }
 
 .discover-all__card {
@@ -583,7 +680,7 @@
   font-size: 15px;
   font-weight: 700;
   text-transform: uppercase;
-  color: #e2e2e2;
+  color: var(--on-background);
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -601,7 +698,7 @@
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  color: #7d0eff;
+  color: var(--secondary-container);
 }
 
 .discover-all__card-difficulty {
@@ -614,18 +711,18 @@
 }
 
 .discover-all__card-difficulty--easy {
-  background: #00ff0d;
-  color: #000000;
+  background: var(--primary-container);
+  color: var(--background);
 }
 
 .discover-all__card-difficulty--medium {
-  background: #FF8400;
-  color: #000000;
+  background: var(--accent-orange);
+  color: var(--background);
 }
 
 .discover-all__card-difficulty--hard {
-  background: #ff0000;
-  color: #000000;
+  background: var(--error);
+  color: var(--background);
 }
 
 .discover-all__play-btn {
@@ -648,9 +745,9 @@
 }
 
 .discover-all__play-btn:hover {
-  background: #00ff0d;
-  color: #000000;
-  border-color: #00ff0d;
+  background: var(--primary-container);
+  color: var(--background);
+  border-color: var(--primary-container);
 }
 
 .discover-all__play-btn:active {
@@ -766,9 +863,15 @@
 
   .discover-search {
     justify-content: stretch;
+    width: 100%;
+  }
+
+  .discover-search__form {
+    width: 100%;
   }
 
   .discover-search__input-wrap {
+    flex: 1;
     width: 100%;
   }
 

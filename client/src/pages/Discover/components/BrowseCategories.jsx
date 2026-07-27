@@ -25,6 +25,10 @@ const BrowseCategories = () => {
             {cat.toUpperCase()}
           </button>
         ))}
+
+        <button className="discover-browse__add-btn" aria-label="Add Category">
+          <span className="material-symbols-outlined">add</span>
+        </button>
       </div>
     </section>
   );
