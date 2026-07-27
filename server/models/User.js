@@ -11,6 +11,9 @@ const userSchema = new mongoose.Schema(
 
     username: {
       type: String,
+      unique: true,
+      sparse: true,
+      default: null,
       trim: true,
       lowercase: true,
     },
@@ -40,28 +43,24 @@ const userSchema = new mongoose.Schema(
       default: '',
     },
 
-    provider: {
-      type: String,
-      enum: ['local', 'google'],
-      default: 'local',
+    settings: {
+      showStatus: {
+        type: String,
+        enum: ['online', 'away', 'dnd', 'invisible'],
+        default: 'online',
+      },
+      theme: {
+        type: String,
+        default: 'dark',
+      },
+      emailNotifications: {
+        type: Boolean,
+        default: true,
+      },
     },
 
-    stats: {
-      gamesPlayed: { type: Number, default: 0 },          // Unique games played
-      matchesPlayed: { type: Number, default: 0 },        // Total matches
-      wins: { type: Number, default: 0 },
-      losses: { type: Number, default: 0 },
-      totalPlayTime: { type: Number, default: 0 },        // Seconds
-      achievementsUnlocked: { type: Number, default: 0 },
-    },
-
-    lastLogin: {
+    lastSeen: {
       type: Date,
-    },
-
-    isVerified: {
-      type: Boolean,
-      default: false,
     },
   },
   { timestamps: true }
