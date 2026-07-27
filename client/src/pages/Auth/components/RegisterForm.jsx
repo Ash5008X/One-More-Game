@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../hooks/useAuth';
 import Input from './Input';
 import PasswordInput from './PasswordInput';
-import SocialLogin from './SocialLogin';
 import AuthToggle from './AuthToggle';
 
 const UserIcon = () => (
@@ -116,7 +115,6 @@ const RegisterForm = ({ onToggle }) => {
           </button>
         </form>
 
-        <SocialLogin />
         <AuthToggle isLogin={false} onToggle={onToggle} />
       </div>
     </div>

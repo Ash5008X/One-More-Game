@@ -1,0 +1,825 @@
+/* ============================================================
+   ONE MORE GAME — Discover Page Styles
+   Neo-Brutalist design language matching Dashboard
+   ============================================================ */
+
+/* ------------------------------------------------------------------ */
+/*  Page Shell                                                          */
+/* ------------------------------------------------------------------ */
+.discover-page {
+  min-height: 100vh;
+  background-color: #000000;
+  color: #e2e2e2;
+  font-family: 'Space Grotesk', sans-serif;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.discover-main {
+  flex: 1;
+  padding: 24px 40px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Reduce spacing between search bar and hero */
+.discover-search + .discover-hero {
+  margin-top: -8px;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Shared Section Header                                               */
+/* ------------------------------------------------------------------ */
+.discover-section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 4px solid #ffffff;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+
+.discover-section__title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #e2e2e2;
+  margin: 0;
+}
+
+.discover-section__badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #FF8400;
+  color: #000000;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.discover-section__count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: #84967c;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Search Bar                                                          */
+/* ------------------------------------------------------------------ */
+.discover-search {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.discover-search__input-wrap {
+  position: relative;
+  width: 340px;
+}
+
+.discover-search__icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #84967c;
+  font-size: 20px;
+  pointer-events: none;
+}
+
+.discover-search__input {
+  width: 100%;
+  padding: 12px 16px 12px 44px;
+  background: #000000;
+  border: 2px solid #ffffff;
+  color: #e2e2e2;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  box-shadow: 4px 4px 0px 0px #ffffff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.discover-search__input::placeholder {
+  color: #84967c;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.discover-search__input:focus {
+  border-color: #00ff0d;
+  box-shadow: 4px 4px 0px 0px #00ff0d;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Featured Hero Carousel                                              */
+/* ------------------------------------------------------------------ */
+.discover-hero {
+  position: relative;
+  width: 100%;
+  height: 57vh;
+  max-height: 520px;
+  min-height: 320px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.discover-hero.brutal-card:hover {
+  border-color: #00ff0d;
+}
+
+/* Ken Burns zoom animation */
+@keyframes kenBurns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.08);
+  }
+}
+
+/* Background slides — shared base */
+.discover-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Active slide fades in + Ken Burns */
+.discover-hero__bg--active {
+  z-index: 1;
+  animation:
+    heroFadeIn 0.8s ease forwards,
+    kenBurns 10s ease forwards;
+}
+
+/* Previous slide sits behind, fading out */
+.discover-hero__bg--exiting {
+  z-index: 0;
+  animation: heroFadeOut 0.8s ease forwards;
+}
+
+@keyframes heroFadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes heroFadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Gradient overlay */
+.discover-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.25) 50%, transparent 80%),
+    linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, transparent 55%);
+}
+
+/* Content — movie poster positioning */
+.discover-hero__content {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  padding: 0 48px;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 13%;
+  animation: heroContentFadeIn 0.7s ease 0.15s both;
+}
+
+@keyframes heroContentFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.discover-hero__info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 560px;
+}
+
+.discover-hero__title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 44px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.95),
+    0 4px 32px rgba(0, 0, 0, 0.7),
+    0 0 60px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+.discover-hero__desc {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: #c8d8c2;
+  text-shadow:
+    0 1px 10px rgba(0, 0, 0, 0.9),
+    0 2px 20px rgba(0, 0, 0, 0.6);
+  margin: 0;
+  max-width: 440px;
+}
+
+.discover-hero__actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 6px;
+}
+
+/* Play Now — slightly smaller, orange primary per existing palette */
+.discover-hero__play-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #FF8400;
+  color: #000000;
+  border: 2px solid #ffffff;
+  padding: 10px 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px 0px #ffffff;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.discover-hero__play-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #ffffff;
+  background-color: #ff9a2e;
+}
+
+.discover-hero__play-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+.discover-hero__play-btn .material-symbols-outlined {
+  font-size: 18px;
+}
+
+/* View Details — slightly smaller secondary */
+.discover-hero__details-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  padding: 10px 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px 0px #ffffff;
+  transition: all 0.15s ease;
+}
+
+.discover-hero__details-btn:hover {
+  border-color: #00ff0d;
+  color: #00ff0d;
+  box-shadow: 4px 4px 0px 0px #00ff0d;
+  transform: translate(-2px, -2px);
+}
+
+.discover-hero__details-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+/* ---- Slide Indicators — bottom right ---- */
+.discover-hero__indicators {
+  position: absolute;
+  bottom: 24px;
+  right: 32px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Inactive dot */
+.discover-hero__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.65);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.discover-hero__dot:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Active dot → pill shape */
+.discover-hero__dot--active {
+  width: 40px;
+  height: 10px;
+  border-radius: 5px;
+  border-color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.1);
+  cursor: default;
+}
+
+/* Progress fill keyframe using hardware-accelerated transform: scaleX */
+@keyframes heroProgressFill {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+/* Fill bar inside active pill */
+.discover-hero__dot-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 3px;
+  transform-origin: left center;
+  animation: heroProgressFill 10s linear forwards;
+  will-change: transform;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Trending Games                                                      */
+/* ------------------------------------------------------------------ */
+.discover-trending__track-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.discover-trending__track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 8px 4px 24px;
+  scroll-snap-type: x mandatory;
+}
+
+.discover-trending__card {
+  flex-shrink: 0;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  scroll-snap-align: start;
+}
+
+.discover-trending__card-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-bottom: 2px solid #ffffff;
+  display: block;
+  border-radius: 14px 14px 0 0;
+}
+
+.discover-trending__card-body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.discover-trending__card-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #e2e2e2;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.discover-trending__card-category {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #7d0eff;
+}
+
+.discover-trending__play-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border: 2px solid #ffffff;
+  background: transparent;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.discover-trending__play-btn:hover {
+  background: #00ff0d;
+  color: #000000;
+  border-color: #00ff0d;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Browse Categories                                                   */
+/* ------------------------------------------------------------------ */
+.discover-browse__chips-wrap {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 8px 0 16px;
+}
+
+.discover-browse__chip {
+  flex-shrink: 0;
+  padding: 10px 20px;
+  background: transparent;
+  color: #e2e2e2;
+  border: 2px solid #ffffff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px 0px #ffffff;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.discover-browse__chip:hover {
+  border-color: #00ff0d;
+  color: #00ff0d;
+  box-shadow: 3px 3px 0px 0px #00ff0d;
+  transform: translate(-2px, -2px);
+}
+
+.discover-browse__chip:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+.discover-browse__chip--active {
+  background: #00ff0d;
+  color: #000000;
+  border-color: #00ff0d;
+  box-shadow: 3px 3px 0px 0px #000000;
+}
+
+.discover-browse__chip--active:hover {
+  color: #000000;
+  box-shadow: 5px 5px 0px 0px #000000;
+  transform: translate(-2px, -2px);
+}
+
+/* ------------------------------------------------------------------ */
+/*  All Games                                                           */
+/* ------------------------------------------------------------------ */
+.discover-all__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.discover-all__row {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.discover-all__card {
+  flex: 0 0 calc((100% - 64px) / 5);
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.discover-all__card-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-bottom: 2px solid #ffffff;
+  display: block;
+  border-radius: 14px 14px 0 0;
+}
+
+.discover-all__card-body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.discover-all__card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.discover-all__card-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #e2e2e2;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.discover-all__card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.discover-all__card-category {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #7d0eff;
+}
+
+.discover-all__card-difficulty {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  letter-spacing: 0.05em;
+}
+
+.discover-all__card-difficulty--easy {
+  background: #00ff0d;
+  color: #000000;
+}
+
+.discover-all__card-difficulty--medium {
+  background: #FF8400;
+  color: #000000;
+}
+
+.discover-all__card-difficulty--hard {
+  background: #ff0000;
+  color: #000000;
+}
+
+.discover-all__play-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.discover-all__play-btn:hover {
+  background: #00ff0d;
+  color: #000000;
+  border-color: #00ff0d;
+}
+
+.discover-all__play-btn:active {
+  transform: translateY(2px);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Scrollbar utility (reused from Dashboard)                           */
+/* ------------------------------------------------------------------ */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Responsive — Laptop (< 1280px)                                      */
+/* ------------------------------------------------------------------ */
+@media (max-width: 1280px) {
+  .discover-all__card {
+    flex: 0 0 calc((100% - 48px) / 4);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Responsive — Tablet (< 1024px)                                      */
+/* ------------------------------------------------------------------ */
+@media (max-width: 1024px) {
+  .discover-main {
+    padding: 20px 24px 40px;
+    gap: 24px;
+  }
+
+  .discover-hero {
+    height: 360px;
+  }
+
+  .discover-hero__title {
+    font-size: 36px;
+  }
+
+  .discover-hero__desc {
+    font-size: 13px;
+  }
+
+  .discover-section__title {
+    font-size: 18px;
+  }
+
+  .discover-all__card {
+    flex: 0 0 calc((100% - 32px) / 3);
+  }
+
+  .discover-search__input-wrap {
+    width: 280px;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Responsive — Mobile (< 640px)                                       */
+/* ------------------------------------------------------------------ */
+@media (max-width: 640px) {
+  .discover-main {
+    padding: 16px 16px 32px;
+    gap: 20px;
+  }
+
+  .discover-hero {
+    height: 300px;
+  }
+
+  .discover-hero__title {
+    font-size: 26px;
+  }
+
+  .discover-hero__desc {
+    font-size: 12px;
+    max-width: 260px;
+  }
+
+  .discover-hero__content {
+    padding: 20px;
+  }
+
+  .discover-hero__actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .discover-hero__details-btn {
+    font-size: 12px;
+    padding: 10px 16px;
+  }
+
+  .dash-btn-primary {
+    font-size: 13px;
+    padding: 10px 16px;
+  }
+
+  .discover-hero__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .discover-hero__indicators {
+    align-self: flex-end;
+  }
+
+  .discover-search {
+    justify-content: stretch;
+  }
+
+  .discover-search__input-wrap {
+    width: 100%;
+  }
+
+  .discover-trending__card {
+    width: 180px;
+  }
+
+  .discover-trending__card-img {
+    height: 110px;
+  }
+
+  .discover-all__card {
+    flex: 0 0 200px;
+    min-width: 180px;
+  }
+
+  .discover-all__row {
+    scroll-snap-type: x mandatory;
+  }
+
+  .discover-all__card {
+    scroll-snap-align: start;
+  }
+
+  .discover-browse__chip {
+    font-size: 11px;
+    padding: 8px 14px;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Responsive — Small Mobile (< 480px)                                 */
+/* ------------------------------------------------------------------ */
+@media (max-width: 480px) {
+  .discover-hero {
+    height: 260px;
+  }
+
+  .discover-hero__title {
+    font-size: 22px;
+  }
+
+  .discover-hero__desc {
+    display: none;
+  }
+
+  .discover-section__header {
+    border-bottom-width: 3px;
+  }
+
+  .discover-trending__card {
+    width: 160px;
+  }
+}

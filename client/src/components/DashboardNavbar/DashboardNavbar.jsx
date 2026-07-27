@@ -1,6 +1,14 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import './DashboardNavbar.css';
+
+const NAV_ITEMS = [
+  { path: '/dashboard', label: 'DASHBOARD' },
+  { path: '/discover', label: 'DISCOVER' },
+  { path: '/library', label: 'LIBRARY' },
+  { path: '/leaderboards', label: 'LEADERBOARDS' },
+  { path: '/achievements', label: 'ACHIEVEMENTS' },
+];
 
 const DashboardNavbar = ({ user }) => {
   const navigate = useNavigate();
@@ -21,17 +29,21 @@ const DashboardNavbar = ({ user }) => {
 
       {/* Navigation Links */}
       <nav className="dash-nav__links">
-        <Link to="/dashboard" className="dash-nav__link dash-nav__link--active">DASHBOARD</Link>
-        <Link to="/games" className="dash-nav__link">GAMES</Link>
-        <a className="dash-nav__link" href="#">LEADERBOARDS</a>
-        <a className="dash-nav__link" href="#">ACHIEVEMENTS</a>
+        {NAV_ITEMS.map((item) => (
+          <NavLink
+            key={item.path}
+            to={item.path}
+            className={({ isActive }) =>
+              `dash-nav__link${isActive ? ' dash-nav__link--active' : ''}`
+            }
+          >
+            {item.label}
+          </NavLink>
+        ))}
       </nav>
 
       {/* Trailing Actions */}
       <div className="dash-nav__actions">
-        <button className="dash-nav__icon-btn" aria-label="Search">
-          <span className="material-symbols-outlined">search</span>
-        </button>
         <button className="dash-nav__icon-btn dash-nav__icon-btn--notify" aria-label="Notifications">
           <span className="material-symbols-outlined">notifications</span>
           <span className="dash-nav__notify-dot"></span>

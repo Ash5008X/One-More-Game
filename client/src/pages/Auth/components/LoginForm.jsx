@@ -19,10 +19,12 @@ const LoginForm = ({ onToggle }) => {
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
+  const rememberedEmail = localStorage.getItem('rememberedEmail') || '';
+
   const [formData, setFormData] = useState({
-    email: '',
+    email: rememberedEmail,
     password: '',
-    rememberMe: false,
+    rememberMe: !!rememberedEmail,
   });
 
   const handleChange = (e) => {
@@ -38,6 +40,11 @@ const LoginForm = ({ onToggle }) => {
     setErrorMsg('');
     setLoading(true);
     try {
+      if (formData.rememberMe) {
+        localStorage.setItem('rememberedEmail', formData.email);
+      } else {
+        localStorage.removeItem('rememberedEmail');
+      }
       await login(formData.email, formData.password);
       navigate('/dashboard');
     } catch (err) {
