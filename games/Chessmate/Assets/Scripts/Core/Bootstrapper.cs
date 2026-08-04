@@ -63,6 +63,8 @@ namespace Chessmate.Core
                 "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
             );
 
+            boardRenderer.RenderPosition(boardManager.Board);
+
             Debug.Log("FEN parsed successfully.");
         }
         
