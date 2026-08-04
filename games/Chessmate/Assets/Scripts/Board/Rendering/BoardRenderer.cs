@@ -1,4 +1,6 @@
 using UnityEngine;
+using Chessmate.Board.Data.Models;
+using Chessmate.Pieces;
 
 namespace Chessmate.Board.Rendering
 {
@@ -13,10 +15,14 @@ namespace Chessmate.Board.Rendering
         [SerializeField] private Material blackTileMaterial;
 
         private BoardTile[,] tiles;
+
         private Transform tilesParent;
         private Transform piecesParent;
 
+        private PieceFactory pieceFactory;
+
         public Transform PiecesParent => piecesParent;
+
         private void Awake()
         {
             tiles = new BoardTile[BoardSize, BoardSize];
@@ -26,6 +32,8 @@ namespace Chessmate.Board.Rendering
 
             piecesParent = new GameObject("Pieces").transform;
             piecesParent.SetParent(transform, false);
+
+            pieceFactory = FindAnyObjectByType<PieceFactory>();
         }
 
         public void GenerateBoard()
@@ -65,14 +73,50 @@ namespace Chessmate.Board.Rendering
                 ? whiteTileMaterial
                 : blackTileMaterial;
 
-            tile.Initialize(row, column, material);
+            tile.Initialize(
+                row,
+                column,
+                material
+            );
 
             tiles[row, column] = tile;
         }
 
         public BoardTile GetTile(int row, int column)
         {
+            if (row < 0 || row >= BoardSize)
+                return null;
+
+            if (column < 0 || column >= BoardSize)
+                return null;
+
             return tiles[row, column];
+        }
+
+        public void RenderPosition(BoardModel board)
+        {
+            if (pieceFactory == null)
+            {
+                Debug.LogError("PieceFactory not found!");
+                return;
+            }
+
+            for (int row = 0; row < BoardModel.Size; row++)
+            {
+                for (int column = 0; column < BoardModel.Size; column++)
+                {
+                    Square square = board.GetSquare(row, column);
+
+                    if (square.Piece.IsEmpty)
+                        continue;
+
+                    pieceFactory.CreatePiece(
+                        square.Piece.Type,
+                        square.Piece.Color,
+                        GetTile(row, column)
+                    );
+                }
+            }
         }
     }
 }
